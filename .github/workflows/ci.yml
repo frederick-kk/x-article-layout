@@ -1,0 +1,53 @@
+name: Offline checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.10', '3.13']
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      PYTHONUTF8: '1'
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+      - name: Install Python requirements
+        run: python -m pip install -r skills/x-article-layout/requirements.txt
+      - name: Select the test interpreter
+        run: python -c "import os,sys; open(os.environ['GITHUB_ENV'],'a',encoding='utf-8').write('X_ARTICLE_TEST_PYTHON='+sys.executable+'\n')"
+      - name: Check release sources
+        run: python tools/check_release.py
+      - name: Test release checks and packaging
+        run: python -m unittest discover -s tools -p "test_*.py"
+      - name: Test article helpers
+        working-directory: skills/x-article-layout
+        run: python -X utf8 -m unittest discover -s scripts -p "test_*.py"
+      - name: Test browser-helper invariants offline
+        working-directory: skills/x-article-layout
+        run: node --test scripts/test_cover_ui.mjs scripts/test_import_runtime.mjs

@@ -1,0 +1,4 @@
+interface:
+  display_name: "X Article Layout Assistant"
+  short_description: "Format Obsidian articles into verified X drafts"
+  default_prompt: "Use $x-article-layout to format my selected Obsidian article into an X Articles draft, add a matching cover if missing, and save without publishing."

@@ -1,0 +1,6 @@
+# Python 3.10+. Install into the interpreter used by this skill.
+# markdown-it-py 2.x is retained because the CJK emphasis rule uses parser internals.
+markdown-it-py>=2.2,<3
+beautifulsoup4>=4.12,<5
+Pillow>=10,<13
+PyYAML>=6,<7
