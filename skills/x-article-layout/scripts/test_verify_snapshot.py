@@ -32,7 +32,7 @@ def ordered_item(text, reset=False):
 
 class VerifySnapshotTests(unittest.TestCase):
     def setUp(self):
-        self.work = tempfile.TemporaryDirectory(prefix="x-snapshot-check-", dir=os.environ["TEMP"])
+        self.work = tempfile.TemporaryDirectory(prefix="x-snapshot-check-", dir=os.environ.get("TEMP") or None)
         self.addCleanup(self.work.cleanup)
         self.root = Path(self.work.name)
 

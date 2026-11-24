@@ -56,7 +56,7 @@ python -m pip install -r skills/x-article-layout/requirements.txt
 
 没有可用生图工具时，明确封面待补，保留已保存草稿，不购买订阅或额度。X 控件或保存行为变化时，先检查再继续写入。始终不点击 **Publish**。
 
-离线脚本已在 Windows、Python 3.10.9 / 3.13.5、Node.js 22.21 下通过 45 项 Python 测试和 17 项 Node 测试。附带的 CI 面向 Windows 与 Ubuntu，尚未在已发布的 GitHub 仓库执行；真实网页兼容性及新用户账号权限仍需首次试跑。macOS 提供配置引导，本次尚未进行运行验收。
+离线脚本已在 Windows、Python 3.10.9 / 3.13.5、Node.js 22.21 下通过 45 项 Python 测试和 17 项 Node 测试。附带的 CI 面向 Windows 与 Ubuntu，托管运行结果见仓库 Actions 页面；真实网页兼容性及新用户账号权限仍需首次试跑。macOS 提供配置引导，本次尚未进行运行验收。
 
 ## 隐私与分享
 

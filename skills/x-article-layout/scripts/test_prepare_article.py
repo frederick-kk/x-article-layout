@@ -1,6 +1,6 @@
 """Behavior checks for the read-only article preparation CLI.
 
-Run with Python 3.10+. Fixtures and results stay under process TEMP.
+Run with Python 3.10+. Fixtures use process TEMP or the platform temp folder.
 """
 
 from __future__ import annotations
@@ -21,7 +21,7 @@ SCRIPT = Path(__file__).with_name("prepare_article.py")
 class PrepareArticleTests(unittest.TestCase):
     def setUp(self):
         self.work = tempfile.TemporaryDirectory(
-            prefix="x-article-parser-", dir=os.environ["TEMP"]
+            prefix="x-article-parser-", dir=os.environ.get("TEMP") or None
         )
         self.addCleanup(self.work.cleanup)
         self.root = Path(self.work.name)

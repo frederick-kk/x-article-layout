@@ -21,8 +21,9 @@ PNG = base64.b64decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4
 
 class DiscoverCoverTests(unittest.TestCase):
     def setUp(self):
-        Path(os.environ["TEMP"]).mkdir(parents=True, exist_ok=True)
-        self.work = tempfile.TemporaryDirectory(prefix="x-cover-discovery-", dir=os.environ["TEMP"])
+        temp_root = os.environ.get("TEMP") or tempfile.gettempdir()
+        Path(temp_root).mkdir(parents=True, exist_ok=True)
+        self.work = tempfile.TemporaryDirectory(prefix="x-cover-discovery-", dir=temp_root)
         self.addCleanup(self.work.cleanup)
         self.root = Path(self.work.name)
         self.vault = self.root / "vault"

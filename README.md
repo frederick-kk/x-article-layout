@@ -56,7 +56,7 @@ Source headings and rich formatting are adapted to X's current editor. Native ta
 
 When no image-generation tool is available, the assistant reports the cover as pending and keeps the saved draft. It does not buy subscriptions or credits. Changes to X's controls or save behavior require inspection before further writes. It never clicks **Publish**.
 
-Offline helpers have been tested on Windows with Python 3.10.9 and 3.13.5, and Node.js 22.21: 45 Python tests and 17 Node tests. The supplied CI targets Windows and Ubuntu; it has not yet run in a published GitHub repository. Browser compatibility and each new user's account permissions still require a first live trial. macOS has onboarding instructions but has not been runtime-tested here.
+Offline helpers have been tested on Windows with Python 3.10.9 and 3.13.5, and Node.js 22.21: 45 Python tests and 17 Node tests. The supplied CI targets Windows and Ubuntu; see the repository's Actions tab for hosted run results. Browser compatibility and each new user's account permissions still require a first live trial. macOS has onboarding instructions but has not been runtime-tested here.
 
 ## Privacy and sharing
 
